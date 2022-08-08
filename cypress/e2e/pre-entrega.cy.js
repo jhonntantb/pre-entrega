@@ -20,17 +20,19 @@ describe("Enter Online Shop, add products to cart and check total price ", () =>
     })
     beforeEach("Enter login credentials and click in module Online Shop", () => {
         initialPage.login( loginData.username, loginData.password );
-        home.selectOnlineShowModule();
+        home.selectOnlineShopModule();
     })
 
     it("add products to cart and check total price", () => {
         let totalPrice = productsData.product1.price + productsData.product2.price;
         products.producSelect(productsData.product1.name);
+        cy.alertHandling()
         products.producSelect(productsData.product2.name);
+        cy.alertHandling()
         products.goToShoppingCat();
         shoppingCart.verifyProductExist(productsData.product1.name);
         shoppingCart.verifyProductExist(productsData.product1.name);
-        shoppingCart.verifyTotalPrice(totalPrice);
+        shoppingCart.verifyTotalPrice(totalPrice.toString());
 
         
         cy.log(productsData)

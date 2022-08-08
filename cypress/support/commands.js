@@ -23,3 +23,6 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+Cypress.Commands.add("alertHandling", () => {
+    cy.get('#closeModal', {timeout:2000}).should('exist').click()
+})

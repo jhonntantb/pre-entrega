@@ -3,7 +3,7 @@
 export class Home {
     constructor () {}
 
-    selectOnlineShowModule () {
+    selectOnlineShopModule () {
         cy.get("#onlineshoplink").click()
     }
 }
