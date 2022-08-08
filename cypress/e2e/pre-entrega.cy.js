@@ -23,18 +23,16 @@ describe("Enter Online Shop, add products to cart and check total price ", () =>
         home.selectOnlineShopModule();
     })
 
-    it("add products to cart and check total price", () => {
-        let totalPrice = productsData.product1.price + productsData.product2.price;
-        products.producSelect(productsData.product1.name);
-        cy.alertHandling()
-        products.producSelect(productsData.product2.name);
-        cy.alertHandling()
+    it("Add products to cart, check product list and total price", () => {
+        let { product1, product2 } = productsData
+        let totalPrice = product1.price + product2.price;
+        products.producSelect(product1.name);
+        cy.alertHandling();
+        products.producSelect(product2.name);
+        cy.alertHandling();
         products.goToShoppingCat();
-        shoppingCart.verifyProductExist(productsData.product1.name);
-        shoppingCart.verifyProductExist(productsData.product1.name);
+        shoppingCart.verifyProductExist( product1.name, product1.price);
+        shoppingCart.verifyProductExist( product2.name, product2.price);
         shoppingCart.verifyTotalPrice(totalPrice.toString());
-
-        
-        cy.log(productsData)
     })
 })
