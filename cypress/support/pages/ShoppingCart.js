@@ -4,8 +4,8 @@ export class ShoppingCart {
     constructor () {}
 
     verifyProductExist (name, price) {
-        cy.contains(name).should('exist').and('have.id', 'productName');
-        cy.contains(name).siblings(`[name="${price}"]`).should('exist').and('have.id',"productPrice");
+        cy.contains(name).should('have.attr','name').and('equal', name)
+        cy.contains(name).siblings(`[name="${price}"]`).should('contain.text',`$${price}`);
     }
 
     verifyTotalPrice (totalPrice) {
