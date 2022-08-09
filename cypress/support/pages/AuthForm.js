@@ -15,4 +15,5 @@ export class InitialPage {
         cy.get(this.passwordInput).type(password)
         cy.get(this.buttonSubmitForm).click()
     }
+    
 }

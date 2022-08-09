@@ -5,11 +5,11 @@ export class Products {
 
     }
 
-    producSelect (name) {
+    addProducToCart (name) {
         cy.xpath(`//*[text()="${name}"]`).siblings('[type="button"]').click()
     };
 
-    goToShoppingCat () {
+    goToShoppingCart () {
         cy.get('#goShoppingCart').click()
     }
 }

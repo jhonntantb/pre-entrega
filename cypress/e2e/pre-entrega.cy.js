@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-import { InitialPage } from "../support/pages/InitialPage";
+import { InitialPage } from "../support/pages/AuthForm";
 import { Home } from "../support/pages/Home";
 import { Products } from "../support/pages/Products";
 import { ShoppingCart } from "../support/pages/ShoppingCart"
@@ -24,15 +24,15 @@ describe("Enter Online Shop, add products to cart and check total price ", () =>
     })
 
     it("Add products to cart, check product list and total price", () => {
-        let { product1, product2 } = productsData
+        let { product1, product2 } = productsData;
         let totalPrice = product1.price + product2.price;
-        products.producSelect(product1.name);
+        products.addProducToCart(product1.name);
         cy.alertHandling();
-        products.producSelect(product2.name);
+        products.addProducToCart(product2.name);
         cy.alertHandling();
-        products.goToShoppingCat();
-        shoppingCart.verifyProductExist( product1.name, product1.price);
-        shoppingCart.verifyProductExist( product2.name, product2.price);
-        shoppingCart.verifyTotalPrice(totalPrice.toString());
+        products.goToShoppingCart();
+        shoppingCart.checkProductInListCartList( product1.name, product1.price);
+        shoppingCart.checkProductInListCartList( product2.name, product2.price);
+        shoppingCart.checkTotalPriceOfProducts(totalPrice.toString());
     })
 })

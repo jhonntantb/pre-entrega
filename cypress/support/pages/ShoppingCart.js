@@ -3,12 +3,12 @@
 export class ShoppingCart {
     constructor () {}
 
-    verifyProductExist (name, price) {
-        cy.contains(name).should('have.attr','name').and('equal', name)
-        cy.contains(name).siblings(`[name="${price}"]`).should('contain.text',`$${price}`);
+    checkProductInListCartList (name, price) {
+        cy.contains(name).should('have.attr','name').and('equal', name);
+        cy.contains(name).siblings(`[name="${price}"]`).should('contain.text',`$${price}`); 
     }
 
-    verifyTotalPrice (totalPrice) {
+    checkTotalPriceOfProducts (totalPrice) {
         cy.xpath('//button[text()="Show total price"]').should('exist').click()
         cy.get('p#price').invoke('text').then((text) =>{
             expect(text).is.equal(totalPrice)
