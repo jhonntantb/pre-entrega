@@ -7,9 +7,10 @@ export class Products {
 
     addProducToCart (name) {
         cy.xpath(`//*[text()="${name}"]`).siblings('[type="button"]').click()
+        cy.alertHandling();
     };
 
     goToShoppingCart () {
         cy.get('#goShoppingCart').click()
-    }
+    };
 }

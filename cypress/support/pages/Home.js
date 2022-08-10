@@ -3,7 +3,7 @@
 export class Home {
     constructor () {}
 
-    // le agregue timeout por el tienpo de respuest del servidor 
+    // Agregue timeout por el tiempo de respuesta del servidor al iniciar sesión
     selectOnlineShopModule () {
         cy.get("#onlineshoplink", {timeout: 20000}).click()
     }

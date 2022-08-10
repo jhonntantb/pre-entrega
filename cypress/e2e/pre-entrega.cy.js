@@ -1,4 +1,5 @@
 /// <reference types="cypress" />
+
 import { InitialPage } from "../support/pages/AuthForm";
 import { Home } from "../support/pages/Home";
 import { Products } from "../support/pages/Products";
@@ -10,6 +11,7 @@ describe("Enter Online Shop, add products to cart and check total price ", () =>
     const home = new Home;
     const products = new Products;
     const shoppingCart = new ShoppingCart;
+
     before("Bringing necessary data stored in fixture", () => {
         cy.fixture("loginData").then(data => {
             loginData = data
@@ -17,22 +19,21 @@ describe("Enter Online Shop, add products to cart and check total price ", () =>
         cy.fixture("productsData").then(data => {
             productsData = data
         });
-    })
+    });
+
     beforeEach("Enter login credentials and click in module Online Shop", () => {
         initialPage.login( loginData.username, loginData.password );
         home.selectOnlineShopModule();
-    })
+    });
 
     it("Add products to cart, check product list and total price", () => {
         let { product1, product2 } = productsData;
         let totalPrice = product1.price + product2.price;
-        products.addProducToCart(product1.name);
-        cy.alertHandling();
-        products.addProducToCart(product2.name);
-        cy.alertHandling();
+        products.addProducToCart( product1.name );
+        products.addProducToCart( product2.name );
         products.goToShoppingCart();
-        shoppingCart.checkProductInListCartList( product1.name, product1.price);
-        shoppingCart.checkProductInListCartList( product2.name, product2.price);
-        shoppingCart.checkTotalPriceOfProducts(totalPrice.toString());
-    })
-})
+        shoppingCart.checkProductInListCartList( product1.name, product1.price );
+        shoppingCart.checkProductInListCartList( product2.name, product2.price );
+        shoppingCart.checkTotalPriceOfProducts( totalPrice.toString() );
+    });
+});
